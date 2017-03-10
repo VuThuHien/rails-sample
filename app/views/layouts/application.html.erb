@@ -7,7 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= link_to "Books", books_path %>
+<% if user_signed_in? %>
+  <h3>Hello, <%= current_user.email %></h3>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  <hr>
+<% else %>
+  <%= link_to "Signin", new_user_session_path %>
+  <%= link_to "Register", new_user_registration_path %>
+<% end %>
 <%= yield %>
 
 </body>
